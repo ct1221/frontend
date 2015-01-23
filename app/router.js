@@ -60,6 +60,16 @@ Router.map(function() {
         this.route('search', { path: "/search/:search_text" });
     });
     
+    this.resource('ministry', function() {
+        this.route('demographics');
+        this.route('hospital');
+        this.route('leadership');
+        this.route('community');
+        this.route('christianityExplored');
+        this.route('faithDeclarations');
+        this.route('additionalInformation');
+    });
+    
     this.resource('patients', function() {
         this.route('edit', { path: "/edit/:patient_id" });
         this.route('reports');
