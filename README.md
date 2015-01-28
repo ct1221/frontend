@@ -11,7 +11,7 @@ To run the app, you will need the following:
    * Command line: git clone git@github.com:neongreenfruit/frontend.git
 4. Go to the `frontend` directory, and run the following:
     * `sudo npm install` to install needed node modules.
-    * `sudo bower install` to install needed bower modules.
+    * `bower install` to install needed bower modules.
 5. Install/configure [couchdb](http://couchdb.apache.org/)
   1. Download and install couchdb from http://couchdb.apache.org/#download
   2. Run `initcouch.sh` to setup couchdb with an admin user with the credentials `hradmin/test`.  
