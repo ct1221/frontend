@@ -3,29 +3,37 @@
         <tr class="table-header">
             <th>Number</th>
             <th>Patient</th>
-            <th>Price</th>
-            <th>Publish Status</th>
-            <th>Create Date</th>
-            <th>Actions</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Bill Date</th>
+            {{#if showActions}}
+                <th>Actions</th>
+            {{/if}}
         </tr>
-        {{#each}}
-            {{#unless isNew}}
+        {{#with this as parentController}}
+            {{#each}}
                 <tr {{action 'editItem' this}}>
-                    <td>{{invoiceNumber}}</td>
-                    <td>{{patientName}}<br>{{patient.primaryDiagnosis}}</td>
-                    <td>{{totalPrice}}</td>
-                    <td>{{publishStatus}}</td>
-                    <td>{{createDate}}</td>
-                    <td>
-                        <button class="btn btn-default" {{action 'editItem' this bubbles=false }}>Edit</button>
-                        <button class="btn btn-default" {{action 'deleteItem' this bubbles=false }}>Delete</button>
-                    </td>        
-                </tr>
-            {{/unless}}
-        {{/each}}
+                    <td>{{displayInvoiceNumber}}</td>
+                    <td>{{patient.displayName}} [{{patient.displayPatientId}}]<br>{{visit.primaryDiagnosis}}</td>
+                    <td>{{discountTotal}} [{{originalTotal}}]</td>
+                    <td>{{status}}</td>
+                    <td>{{date-format billDate}}</td>
+                    {{#if parentController.showActions}}
+                        <td>                        
+                            {{#if parentController.canAdd}}
+                                <button class="btn btn-default neutral" {{action 'editItem' this  bubbles=false }}>Edit</button>
+                            {{/if}}
+                            {{#if parentController.canDelete}}
+                                <button class="btn btn-default warning" {{action 'deleteItem' this  bubbles=false }}><span class="octicon octicon-x"></span> Delete</button>
+                            {{/if}}
+                        </td>
+                    {{/if}}
+                </tr>            
+            {{/each}}
+        {{/with}}
     </table>
 {{else}}
     <div class="alert alert-info">
-        <em>No invoices found.  Create an adhoc invoice?</em> <button class="btn btn-primary" {{action 'newItem'}}>New Invoice</button>
+        <em>No invoices found.  Create an invoice?</em> <button class="btn btn-primary" {{action 'newItem'}}>New Invoice</button>
     </div>
 {{/if}}

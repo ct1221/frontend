@@ -1,13 +1,18 @@
 import AbstractEditController from 'hospitalrun/controllers/abstract-edit-controller';
 import AddDiagnosisModel from 'hospitalrun/models/add-diagnosis';
+import ChargeActions from 'hospitalrun/mixins/charge-actions';
 import Ember from "ember";
 import PatientSubmodule from 'hospitalrun/mixins/patient-submodule';
 import UserSession from "hospitalrun/mixins/user-session";
 import VisitTypes from 'hospitalrun/mixins/visit-types';
 
-export default AbstractEditController.extend(PatientSubmodule, UserSession, VisitTypes, {
+export default AbstractEditController.extend(ChargeActions, PatientSubmodule, UserSession, VisitTypes, {
     needs: 'visits',
     
+    canAddCharge: function() {        
+        return this.currentUserCan('add_charge');
+    }.property(),
+
     canAddImaging: function() {
         return this.currentUserCan('add_imaging');
     }.property(),    
@@ -58,7 +63,10 @@ export default AbstractEditController.extend(PatientSubmodule, UserSession, Visi
     
     
     cancelAction: 'returnToPatient',
+    chargeRoute: 'visits.charge',
     clinicList: Ember.computed.alias('controllers.visits.clinicList'),
+    findPatientVisits: false,
+    pricingList: null, //This gets filled in by the route
     physicianList: Ember.computed.alias('controllers.visits.physicianList'),
     locationList: Ember.computed.alias('controllers.visits.locationList'),
     lookupListsToUpdate: [{
@@ -84,7 +92,7 @@ export default AbstractEditController.extend(PatientSubmodule, UserSession, Visi
     }.observes('primaryDiagnosisId'),
 
     afterUpdate: function() {
-        this.send('returnToPatient');        
+        this.displayAlert('Visit Saved', 'The visit record has been saved.');
     },
     
     beforeUpdate: function() {        
@@ -132,10 +140,6 @@ export default AbstractEditController.extend(PatientSubmodule, UserSession, Visi
             this.set('additionalDiagnoses', additionalDiagnoses);
             this.send('update', true);
         },        
-        
-        addProcedure: function(newProcedure) {
-            this.updateList('procedures', newProcedure);
-        },
         
         addVitals: function(newVitals) {
             this.updateList('vitals', newVitals);
@@ -223,9 +227,10 @@ export default AbstractEditController.extend(PatientSubmodule, UserSession, Visi
         
         showAddProcedure: function() {
             var newProcedure = this.get('store').createRecord('procedure', {
-                dateRecorded: new Date()
+                dateRecorded: new Date(),
+                visit: this.get('model'),
             });
-            this.send('openModal', 'visits.procedures.edit', newProcedure);
+            this.transitionToRoute('procedures.edit', newProcedure);
         },
 
         showDeleteImaging: function(imaging) {
@@ -249,7 +254,10 @@ export default AbstractEditController.extend(PatientSubmodule, UserSession, Visi
         },
 
         showEditProcedure: function(procedure) {
-            this.send('openModal', 'visits.procedures.edit', procedure);
+            if (Ember.isEmpty(procedure.get('visit'))) {
+                procedure.set('visit', this.get('model'));
+            }
+            this.transitionToRoute('procedures.edit', procedure);
         },
         
         showEditVitals: function(vitals) {

@@ -5,18 +5,6 @@ export default AbstractModuleRoute.extend({
     moduleName: 'labs',
     newButtonText: '+ new lab',
     sectionTitle: 'Labs',
-
-    additionalModels: [{
-        name: 'patientList',
-        findArgs: ['patient']
-    }, {
-        name: 'labTypesList',
-        findArgs: ['lookup','lab_types']
-    }, {
-        name: 'visitList',
-        findArgs: ['visit']
-    }],
-    
     subActions: [{
         text: 'Requests',
         linkTo: 'labs.index'

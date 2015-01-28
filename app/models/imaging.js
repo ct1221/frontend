@@ -1,9 +1,11 @@
 import AbstractModel from "hospitalrun/models/abstract";
 import DateFormat from "hospitalrun/mixins/date-format";
+import PatientValidation from "hospitalrun/utils/patient-validation";
 
 export default AbstractModel.extend(DateFormat, {
+    charges: DS.hasMany('proc-charge'),
     imagingDate: DS.attr('date'),
-    imagingType: DS.attr('string'),
+    imagingType: DS.belongsTo('pricing'),
     notes: DS.attr('string'),
     patient: DS.belongsTo('patient'),
     requestedBy: DS.attr('string'),
@@ -18,5 +20,13 @@ export default AbstractModel.extend(DateFormat, {
     
     requestedDateAsTime: function() {
         return this.dateToTime(this.get('requestedDate'));
-    }.property('requestedDate')
+    }.property('requestedDate'),
+    
+    validations: {
+        patientTypeAhead: PatientValidation.patientTypeAhead,        
+        
+        patient: {
+            presence: true
+        }
+    }
 });

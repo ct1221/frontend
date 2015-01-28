@@ -3,6 +3,18 @@ import InventoryTypeList from 'hospitalrun/mixins/inventory-type-list';
 export default Ember.ArrayController.extend(InventoryTypeList, {
     lookupType: null,
     lookupTypes: [{
+        name: 'Anesthesia Types',
+        value: 'anesthesia_types',        
+        model: {        
+            procedure: 'anesthesiaType'
+        }
+    }, {
+        name: 'Anesthesiologists',
+        value: 'anesthesiologists',
+        model: {
+            procedure: 'anesthesiologist'
+        }
+    }, {
         name: 'Clinic Locations',
         value: 'clinic_list',
         models: { //Models that use this lookup -- use this later to update models on lookup changes
@@ -20,12 +32,6 @@ export default Ember.ArrayController.extend(InventoryTypeList, {
         value: 'expense_account_list',
         models: {
             'inv-request':  'expenseAccount'
-        }
-    }, {
-        name: 'Imaging Types',
-        value: 'imaging_types',
-        models: {
-            imaging: 'imagingType'
         }
     }, {
         name: 'Inventory Aisle Locations',
@@ -59,12 +65,6 @@ export default Ember.ArrayController.extend(InventoryTypeList, {
             inventory:  'type'
         }
     }, {
-        name: 'Lab Types',
-        value: 'lab_types',
-        models: {
-            lab: 'labType'
-        }
-    }, {
         name: 'Medication Frequency',
         value: 'medication_frequency',
         models: {
@@ -82,8 +82,18 @@ export default Ember.ArrayController.extend(InventoryTypeList, {
             ]
         }
     }, {
+        name: 'Procedure Locations',
+        value: 'procedure_locations',
+        models: {
+            procedure: 'location'         
+        }
+    }, {
         name: 'Visit Locations',
-        value: 'visit_location_list'
+        value: 'visit_location_list',
+        models: {
+            appointment: 'location',
+            visit: 'location',            
+        }
     }],
     
     lookupTitle: function() {

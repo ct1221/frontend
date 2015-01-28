@@ -21,6 +21,13 @@ export default Ember.Mixin.create({
             'Social Worker', 
             'System Administrator'
         ],
+        add_charge: [
+            'Data Entry',
+            'Business Office', 
+            'Hospital Administrator',
+            'Medical Records Officer',
+            'System Administrator'             
+        ],
         add_diagnosis: [
             'Data Entry',
             'Doctor',
@@ -147,7 +154,13 @@ export default Ember.Mixin.create({
             'Inventory Manager',
             'Medical Records Officer',
             'System Administrator'
-        ],        
+        ], 
+        billing: [
+            'Hospital Administrator',
+            'Finance',
+            'Finance Manager',
+            'System Administrator'
+        ],
         complete_imaging: [
             'Imaging Technician', 
             'Medical Records Officer',
@@ -190,6 +203,11 @@ export default Ember.Mixin.create({
             'Medical Records Officer',
             'System Administrator'
         ],
+        delete_invoice: [
+            'Business Office', 
+            'Hospital Administrator',
+            'System Administrator' 
+        ],        
         delete_lab: [
             'Doctor', 
             'Hospital Administrator',
@@ -255,6 +273,13 @@ export default Ember.Mixin.create({
             'User Administrator',
             'System Administrator'
         ],
+        edit_invoice: [
+            'Data Entry',
+            'Business Office', 
+            'Hospital Administrator',
+            'Medical Records Officer',
+            'System Administrator' 
+        ],
         fulfill_inventory: [
             'Hospital Administrator',
             'Inventory Manager',
@@ -274,6 +299,12 @@ export default Ember.Mixin.create({
             'Medical Records Officer',
             'System Administrator'
         ],
+        invoices: [
+            'Hospital Administrator',
+            'Finance',
+            'Finance Manager',
+            'System Administrator'
+        ],        
         labs: [
             'Data Entry',
             'Doctor', 
@@ -298,6 +329,11 @@ export default Ember.Mixin.create({
             'Nurse Manager', 
             'Pharmacist',
             'System Administrator'
+        ],
+        override_invoice: [
+            'Business Office', 
+            'Hospital Administrator',
+            'System Administrator' 
         ],
         query_db: [
             'System Administrator'

@@ -1,31 +1,44 @@
-import AbstractModel from "hospitalrun/models/abstract";
+import AbstractModel from 'hospitalrun/models/abstract';
+import Ember from 'ember';
+import PatientValidation from 'hospitalrun/utils/patient-validation';
 
 export default AbstractModel.extend({
-    invoiceId: DS.attr('string'),
-    invoiceNumber: DS.attr('number'),
-    patientId: DS.attr('string'),
-    publishStatus: DS.attr('string'),
-    publishDate: DS.attr('date'),
-    priceTotal: DS.attr('number'),
+    externalInvoiceNumber: DS.attr('string'),
+    patient: DS.belongsTo('patient'),
+    visit: DS.belongsTo('visit'),
+    status: DS.attr('string'),
+    billDate: DS.attr('date'),
+    originalTotal: DS.attr('number'),
+    discountTotal: DS.attr('number'),
+    /* rolloup stored in the object of the payments */
     paidTotal: DS.attr('number'),
-    paidStatus: DS.attr('boolean', {defaultValue: false}),
-    paymentProfile: DS.attr('string'),
-    payments: [],
-    billableEvents: [],
-    lineItems: [],
+    paidFlag: DS.attr('boolean', {defaultValue: false}),
+    /*what do we overlay on the line items to generate the priceTotal */
+    paymentProfile: DS.attr(),
+    /*payments track the number of payment events attached to an invoice.*/
+    payments: DS.hasMany('payment'),
+    /*the individual line items of the invoice*/
+    lineItems: DS.hasMany('billing-line-item'),
+    
+    displayInvoiceNumber: function() {
+        var externalInvoiceNumber = this.get('externalInvoiceNumber'),
+            id = this.get('id');
+        if (Ember.isEmpty(externalInvoiceNumber)) {
+            return id;
+        } else {
+            return externalInvoiceNumber;
+        }
+    }.property('externalInvoiceNumber','id'),
+    
     validations: {
-        invoiceNumber: {
-            numericality: true
+        patientTypeAhead: PatientValidation.patientTypeAhead,        
+        
+        patient: {
+            presence: true
         },
-        priceTotal: {
-            numericality: {
-                allowBlank: true
-            }
-        },
-        paidTotal: {
-            numericality: {
-                allowBlank: true
-            }
+        
+        visit: {
+            presence: true
         }
     }
 });

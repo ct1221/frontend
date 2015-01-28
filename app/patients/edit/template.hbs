@@ -69,7 +69,7 @@
                     </h3>
                 </div>
 
-                <div class="panel-body detail-section-content detail-section-content">
+                <div class="panel-body detail-section-content">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6">
                             <div class="form-group has-success">
@@ -92,6 +92,12 @@
                                 <p class="form-control-static">{{age}}</p>
                             </div>
                             {{em-input property="placeOfBirth" label="Place of Birth"}}
+                            <div class="form-group">
+                                <label>Patient Type</label>
+                                <div>
+                                    {{ext-radio name=patientType content=patientTypes value=patientType showInline=true radioLabelPath="content" radioValuePath="content"}}
+                                </div>
+                            </div>                                                   
                         </div>
                         <div class="col-xs-12 col-sm-6">
                             {{em-input property="externalPatientId" label="External Patient Id"}}
@@ -122,7 +128,7 @@
                     </h3>
                 </div>
 
-                <div class="panel-body detail-section-content detail-section-content">
+                <div class="panel-body detail-section-content">
                     <div class="row">
 
                         {{em-input property="phone" label="Phone Contact" class="col-xs-12 col-sm-6"}}
@@ -190,7 +196,7 @@
                             {{/if}}                
                         </h3>
                     </div>
-                    <div class="panel-body detail-section-content detail-section-content">
+                    <div class="panel-body detail-section-content">
                         <div class="row">
                             {{#each photos itemController="patients/photo-item"}}
                                 <div class="col-sm-4 col-md-3">                                

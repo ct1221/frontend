@@ -6,17 +6,6 @@ export default AbstractModuleRoute.extend(UserSession, {
     moduleName: 'imaging',
     newButtonText: '+ new imaging',
     sectionTitle: 'Imaging',
-
-    additionalModels: [{
-        name: 'patientList',
-        findArgs: ['patient']
-    }, {
-        name: 'imagingTypesList',
-        findArgs: ['lookup','imaging_types']
-    }, {
-        name: 'visitList',
-        findArgs: ['visit']
-    }],
     
     subActions: [{
         text: 'Requests',

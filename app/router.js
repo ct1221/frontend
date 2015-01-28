@@ -42,7 +42,7 @@ Router.map(function() {
         this.route('search', { path: "/search/:search_text" });
     });
     
-    this.resource('invoices', { path: '/invoice' }, function() {
+    this.resource('invoices', function() {
         this.route('edit', { path: "/edit/:invoice_id" });
         this.route('search', { path: "/search/:search_text" });
     });
@@ -78,6 +78,9 @@ Router.map(function() {
         
     this.resource('visits', function() {
         this.route('edit', { path: "/edit/:visit_id" });
+        this.resource('procedures', function() {
+            this.route('edit', { path: "/edit/:procedure_id" });
+        });
     });
 });
 
