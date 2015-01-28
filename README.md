@@ -8,6 +8,7 @@ To run the app, you will need the following:
 1. Install [ember-cli v0.1.4](https://www.npmjs.org/package/ember-cli): `sudo npm install -g ember-cli@0.1.4`
 2. Install [bower](https://www.npmjs.org/package/bower): `sudo npm install -g bower`
 3. Clone the `frontend` directory! 
+   * Command line: git clone git@github.com:neongreenfruit/frontend.git
 4. Go to the `frontend` directory, and run the following:
     * `sudo npm install` to install needed node modules.
     * `sudo bower install` to install needed bower modules.
