@@ -61,6 +61,8 @@ Router.map(function() {
     });
     
     this.resource('ministry', function() {
+        //this.route('edit', { path: "/edit/:ministry_id" });
+        //this.route('report');
         this.route('demographics');
         this.route('hospital');
         this.route('leadership');

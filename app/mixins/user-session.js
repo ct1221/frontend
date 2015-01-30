@@ -321,6 +321,10 @@ export default Ember.Mixin.create({
             'Pharmacist', 
             'System Administrator'
         ],
+        ministry: [
+            'Spiritual Ministry Director',
+            'System Administrator'
+        ],
         inventory: [
             'Data Entry',
             'Hospital Administrator',

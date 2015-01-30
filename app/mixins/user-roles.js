@@ -16,6 +16,7 @@ export default Ember.Mixin.create({
         {name: 'Patient Administration', roles: ['Patient Administration', 'user']},
         {name: 'Pharmacist', roles: ['Pharmacist', 'user']},
         {name: 'Social Worker', roles: ['Social Worker', 'user']},
+        {name: 'Spiritual Ministry Director', roles: ['Spiritual Ministry Director', 'user']},
         {name: 'System Administrator', roles: ['System Administrator','admin','user']},
         {name: 'User Administrator', roles: ['User Administrator','admin','user']}
     ]
