@@ -1,6 +1,6 @@
 frontend
 ========
-Peters Making a quick change
+
 Ember front end for HospitalRun
 
 To run the app, you will need the following:
