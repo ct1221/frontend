@@ -15,15 +15,7 @@ To run the app, you will need the following:
 5. Install/configure [couchdb](http://couchdb.apache.org/)
   1. Download and install couchdb from http://couchdb.apache.org/#download
   2. Run `initcouch.sh` to setup couchdb with an admin user with the credentials `hradmin/test`.  
-  3. -OR- do the following
-    * Go to Futon (`http://0.0.0.0:5984/_utils/`) 
-    * Look for the "Welcome to Admin Party!" text down in the bottom right and click on "Fix this"
-    * Create an admin user via the prompt that is displayed
-    * Click on Create Database in the upper left corner
-    * Create a database named `main`
-    * Again click on Create Database in the upper left corner
-    * Create a database named `config`
-    * 
+      * Go to Futon (`http://0.0.0.0:5984/_utils/`)
 6. Go into the frontend folder, then into server, then click on config-example.js, check to make sure that the 'couch_admin_user' and 'couch_admin_password' match your admin credentials, and rename the file to 'config.js'. 
 7. Start the server so you can view the repo in your browser by running `ember serve` from the `frontend` directory.
 8. Go to `http://0.0.0.0:4200/` in a browser and login with your couchdb admin user.
