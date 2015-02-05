@@ -61,15 +61,15 @@ Router.map(function() {
     });
     
     this.resource('ministry', function() {
-        //this.route('edit', { path: "/edit/:ministry_id" });
-        //this.route('report');
-        this.route('demographics');
-        this.route('hospital');
-        this.route('leadership');
-        this.route('community');
-        this.route('christianityExplored');
-        this.route('faithDeclarations');
-        this.route('additionalInformation');
+        this.route('edit', { path: "/edit/:ministry_id" });
+        this.route('report');
+//        this.route('demographics');
+//        this.route('hospital');
+//        this.route('leadership');
+//        this.route('community');
+//        this.route('christianityExplored');
+//        this.route('faithDeclarations');
+//        this.route('additionalInformation');
     });
     
     this.resource('patients', function() {
